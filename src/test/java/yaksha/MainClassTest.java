@@ -42,8 +42,13 @@ class MainClassTest {
 		resulList2.add("1010=12000");
 		resulList2.add("2020=17280");
 		Map<Integer, Integer> tm = BonusCalculator.calculateBonus(hm, hm1);
-		for (Map.Entry<Integer, Integer> tm2 : tm.entrySet()) {
-			resulList1.add(tm2.getKey() + "=" + tm2.getValue());
+		try{
+			for (Map.Entry<Integer, Integer> tm2 : tm.entrySet()) {
+				resulList1.add(tm2.getKey() + "=" + tm2.getValue());
+			}
+		}catch(Exception ex){
+			yakshaAssert(currentTest(), "false", businessTestFile);
+			return;
 		}
 		yakshaAssert(currentTest(), (resulList1.containsAll(resulList2) ? "true" : "false"), businessTestFile);
 	}
